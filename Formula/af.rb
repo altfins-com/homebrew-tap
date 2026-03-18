@@ -5,21 +5,21 @@
 class Af < Formula
   desc "altFINS CLI for market data, analytics, signals, and TUI workflows"
   homepage "https://altfins.com"
-  version "0.1.0"
+  version "0.2.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.1.0/af_0.1.0_darwin_amd64.tar.gz"
-      sha256 "7e36dfa5b6faa8dcb9d1f4a620ccff2584fe2e1c608d34a7b73129fcee3972e4"
+      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.2.0/af_0.2.0_darwin_amd64.tar.gz"
+      sha256 "863c3e64958bbe54d79bd31d4029eedc43d8f1e72d2ac715f873575d9b524237"
 
       define_method(:install) do
         bin.install "af"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.1.0/af_0.1.0_darwin_arm64.tar.gz"
-      sha256 "f2369a4300a6b3a7656fc8a937c0ad8a24bc090ac8e346dae2804474dab05f00"
+      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.2.0/af_0.2.0_darwin_arm64.tar.gz"
+      sha256 "50e6f3cb492620323c6fcb77a7022f492d207d78596f0e7cba21385772b39aab"
 
       define_method(:install) do
         bin.install "af"
@@ -29,15 +29,15 @@ class Af < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.1.0/af_0.1.0_linux_amd64.tar.gz"
-      sha256 "ec4134037bb42bc79e79238db522d399e8d670c35e14964195f7c9cde1334e1e"
+      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.2.0/af_0.2.0_linux_amd64.tar.gz"
+      sha256 "fc1210db7f5fd1127e96dd46b9c61c108084fe6f9e826cf2dd529f4902379c34"
       define_method(:install) do
         bin.install "af"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.1.0/af_0.1.0_linux_arm64.tar.gz"
-      sha256 "91240749854ec9e33734b861ad81cd14a08f1c2b428a4733f6d3dea252acc9f8"
+      url "https://github.com/altfins-com/altfins-cli/releases/download/v0.2.0/af_0.2.0_linux_arm64.tar.gz"
+      sha256 "48303b1da97f55ce1e4b993c7cd4e1c66c87a0a4073536d74e10d991ced5f608"
       define_method(:install) do
         bin.install "af"
       end
