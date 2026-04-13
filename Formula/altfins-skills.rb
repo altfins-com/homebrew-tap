@@ -1,9 +1,9 @@
 class AltfinsSkills < Formula
   desc "Install and package reusable altFINS AI skills"
   homepage "https://github.com/altfins-com/altfins-ai-skills"
-  url "https://github.com/altfins-com/altfins-ai-skills/releases/download/v0.1.3/altfins-ai-skills-src.tar.gz"
-  sha256 "b924bfaf173f56712e26342ee85e9ff7e7e5df4b3dff260286014d1090507b8c"
-  version "0.1.3"
+  url "https://github.com/altfins-com/altfins-ai-skills/releases/download/v0.1.4/altfins-ai-skills-src.tar.gz"
+  sha256 "ba1c51cb37353d12cd7296a9f1c17aae5ffb1959da7104b23a8a682c7633b753"
+  version "0.1.4"
   license "Apache-2.0"
 
   depends_on "python@3.12"
