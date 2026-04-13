@@ -1,9 +1,9 @@
 class AltfinsSkills < Formula
   desc "Install and package reusable altFINS AI skills"
   homepage "https://github.com/altfins-com/altfins-ai-skills"
-  url "https://github.com/altfins-com/altfins-ai-skills/releases/download/v0.1.2/altfins-ai-skills-src.tar.gz"
-  sha256 "3a641f4eb385b960baa429a7dacf5dbf571504e6506ad5e64bb77961d4e489ec"
-  version "0.1.2"
+  url "https://github.com/altfins-com/altfins-ai-skills/releases/download/v0.1.3/altfins-ai-skills-src.tar.gz"
+  sha256 "b924bfaf173f56712e26342ee85e9ff7e7e5df4b3dff260286014d1090507b8c"
+  version "0.1.3"
   license "Apache-2.0"
 
   depends_on "python@3.12"
@@ -14,8 +14,33 @@ class AltfinsSkills < Formula
     (bin/"altfins-skills").write <<~SH
       #!/bin/bash
       export ALTFINS_SKILLS_ROOT="#{libexec}/repo"
-      export ALTFINS_SKILLS_PYTHON="#{Formula["python@3.12"].opt_bin}/python3.12"
-      exec "$ALTFINS_SKILLS_PYTHON" "$ALTFINS_SKILLS_ROOT/scripts/skills.py" "$@"
+      CANDIDATES=(
+        "#{Formula["python@3.12"].opt_bin}/python3.12"
+        "#{Formula["python@3.12"].opt_bin}/python3"
+      )
+
+      if [ -n "${ALTFINS_SKILLS_PYTHON:-}" ]; then
+        CANDIDATES=("${ALTFINS_SKILLS_PYTHON}" "${CANDIDATES[@]}")
+      fi
+
+      for candidate in "${CANDIDATES[@]}"; do
+        if [ -x "$candidate" ]; then
+          exec "$candidate" "$ALTFINS_SKILLS_ROOT/scripts/skills.py" "$@"
+        fi
+      done
+
+      if command -v python3.12 >/dev/null 2>&1; then
+        exec "$(command -v python3.12)" "$ALTFINS_SKILLS_ROOT/scripts/skills.py" "$@"
+      fi
+      if command -v python3 >/dev/null 2>&1; then
+        exec "$(command -v python3)" "$ALTFINS_SKILLS_ROOT/scripts/skills.py" "$@"
+      fi
+      if command -v python >/dev/null 2>&1; then
+        exec "$(command -v python)" "$ALTFINS_SKILLS_ROOT/scripts/skills.py" "$@"
+      fi
+
+      echo "Could not find a usable Python interpreter for altfins-skills." >&2
+      exit 1
     SH
   end
 
